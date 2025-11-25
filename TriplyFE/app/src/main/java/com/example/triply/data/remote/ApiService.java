@@ -4,6 +4,7 @@ import com.example.triply.data.remote.model.AuthResponse;
 import com.example.triply.data.remote.model.LoginRequest;
 import com.example.triply.data.remote.model.RegisterRequest;
 import com.example.triply.data.remote.model.SocialLoginRequest;
+import com.example.triply.data.remote.model.UpdateUserRequest;
 import com.example.triply.data.remote.model.CreatePlanRequest;
 import com.example.triply.data.remote.model.PlanResponse;
 import com.example.triply.data.remote.model.SaveTripRequest;
@@ -32,6 +33,9 @@ public interface ApiService {
 
     @GET("/api/v1/auth/me")
     Call<AuthResponse> me(@Header("Authorization") String bearerToken);
+
+    @POST("/api/v1/auth/update-profile")
+    Call<AuthResponse> updateProfile(@Header("Authorization") String bearerToken, @Body UpdateUserRequest request);
 
     // Trip planning
     @POST("/api/v1/trip/plan")

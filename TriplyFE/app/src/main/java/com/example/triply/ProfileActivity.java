@@ -9,16 +9,40 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.triply.util.TokenManager;
+import com.google.android.material.textview.MaterialTextView;
 
 public class ProfileActivity extends AppCompatActivity {
+
+    private TokenManager tokenManager;
+    private MaterialTextView profileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         
+        tokenManager = new TokenManager(this);
+        profileName = findViewById(R.id.profile_name);
+        
+        loadUserInfo();
         setupMenuClicks();
         setupBottomNavigation();
+    }
+    
+    private void loadUserInfo() {
+        String fullName = tokenManager.getFullName();
+        String userName = tokenManager.getUserName();
+        String email = tokenManager.getUserEmail();
+        
+        if (fullName != null && !fullName.isEmpty()) {
+            profileName.setText(fullName);
+        } else if (userName != null && !userName.isEmpty()) {
+            profileName.setText(userName);
+        } else if (email != null && !email.isEmpty()) {
+            profileName.setText(email);
+        } else {
+            profileName.setText("Guest");
+        }
     }
     
     private void setupMenuClicks() {
@@ -28,7 +52,8 @@ public class ProfileActivity extends AppCompatActivity {
         LinearLayout menuLogout = findViewById(R.id.menu_logout);
         
         menuPersonalInfo.setOnClickListener(v -> {
-            Toast.makeText(this, "Personal Information clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ProfileActivity.this, PersonalInformationActivity.class);
+            startActivity(intent);
         });
         
         menuSavedPlans.setOnClickListener(v -> {

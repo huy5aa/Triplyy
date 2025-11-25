@@ -26,6 +26,14 @@ public class AuthResponse {
         public String getEmail() {
             return email;
         }
+
+        public String getPhone() {
+            return phone;
+        }
+
+        public String getAddress() {
+            return address;
+        }
     }
 
     public String getAccessToken() {
@@ -70,6 +78,14 @@ public class AuthResponse {
 
     public String getEmail() {
         return customerInfo != null ? customerInfo.getEmail() : null;
+    }
+
+    public String getPhone() {
+        return customerInfo != null ? customerInfo.getPhone() : null;
+    }
+
+    public String getAddress() {
+        return customerInfo != null ? customerInfo.getAddress() : null;
     }
 }
 

@@ -35,7 +35,8 @@ public class AuthRepository {
                 if (response.isSuccessful() && response.body() != null) {
                     AuthResponse authResponse = response.body();
                     tokenManager.saveAccessToken(authResponse.getAccessToken());
-                    tokenManager.saveUserInfo(authResponse.getFullName(), authResponse.getUserName(), authResponse.getEmail());
+                    tokenManager.saveUserInfo(authResponse.getFullName(), authResponse.getUserName(), 
+                            authResponse.getEmail(), authResponse.getPhone(), authResponse.getAddress());
                     callback.onSuccess(authResponse);
                 } else {
                     callback.onError("Login failed: " + response.code());
@@ -56,7 +57,8 @@ public class AuthRepository {
                 if (response.isSuccessful() && response.body() != null) {
                     AuthResponse authResponse = response.body();
                     tokenManager.saveAccessToken(authResponse.getAccessToken());
-                    tokenManager.saveUserInfo(authResponse.getFullName(), authResponse.getUserName(), authResponse.getEmail());
+                    tokenManager.saveUserInfo(authResponse.getFullName(), authResponse.getUserName(), 
+                            authResponse.getEmail(), authResponse.getPhone(), authResponse.getAddress());
                     callback.onSuccess(authResponse);
                 } else {
                     callback.onError("Register failed: " + response.code());
@@ -77,7 +79,8 @@ public class AuthRepository {
                 if (response.isSuccessful() && response.body() != null) {
                     AuthResponse authResponse = response.body();
                     tokenManager.saveAccessToken(authResponse.getAccessToken());
-                    tokenManager.saveUserInfo(authResponse.getFullName(), authResponse.getUserName(), authResponse.getEmail());
+                    tokenManager.saveUserInfo(authResponse.getFullName(), authResponse.getUserName(), 
+                            authResponse.getEmail(), authResponse.getPhone(), authResponse.getAddress());
                     callback.onSuccess(authResponse);
                 } else {
                     callback.onError("Social login failed: " + response.code());
